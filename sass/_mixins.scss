@@ -1,0 +1,7 @@
+@mixin tab-size($size) {
+	tab-size: $size;
+	-moz-tab-size: $size;
+	-o-tab-size: $size;
+	-ms-tab-size: $size;
+	-webkit-tab-size: $size;
+}

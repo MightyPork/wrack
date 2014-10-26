@@ -1,0 +1,8 @@
+name: Test Article
+description: Here is written what is inside the article. Cool, right?
+tags: [php, html, css]
+
+canonical: 20141026-test-article
+created: 2014-10-26
+
+body: body.md

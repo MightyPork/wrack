@@ -1,0 +1,8 @@
+/vendor/
+/.sass-cache
+composer.phar
+composer.lock
+.DS_Store
+Thumbs.db
+*~
+*.bak
