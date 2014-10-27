@@ -32,8 +32,19 @@ class Article
 			throw new StructureException('Could not parse article options: '.$path, $e);
 		}
 
+		$this->name			= Util::arrayGet($options, 'name');
+		$this->canonical	= Util::arrayGet($options, 'canonical');
+		$this->created 		= Util::arrayGet($options, 'created');
+
+		$this->description	= Util::arrayGetOptional($options, 'description', '');
+		$this->tags			= Util::arrayGetOptional($options, 'tags', []);
+
+		$this->body_file	= Util::arrayGetOptional($options, 'body', null);
+		// TODO find the right body file.
+
 		var_dump($options);
 
 		// TODO handle options
 	}
+
 }
