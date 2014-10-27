@@ -4,6 +4,11 @@ define('VIEWS_DIR', __DIR__ . '/views/');
 define('CACHE_DIR', __DIR__ . '/cache/');
 define('DATA_DIR', __DIR__ . '/../data/');
 
+
+// server timezone
+date_default_timezone_set('Europe/Prague');
+
+
 // use the Whoops crash handler
 $whoops = new \Whoops\Run;
 

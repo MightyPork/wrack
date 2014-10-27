@@ -54,6 +54,8 @@ class Application
 		} elseif(Navigator::isArticle($path)) {
 
 			$a = new Article($path);
+
+			$this->render('article', ['a' => $a]);
 			// do stuff
 
 		} elseif(Navigator::isGroup($path)) {

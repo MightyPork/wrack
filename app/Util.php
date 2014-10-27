@@ -7,7 +7,7 @@ class Util
 		if(isset($array[$index]))
 			return $array[$index];
 		else
-			throw new StructureException("No such property: $index")
+			throw new StructureException("No such property: $index");
 	}
 
 
