@@ -3,16 +3,24 @@ Herein lies the almighty perfect article
 
 Blah blah and more blah
 
-* bullets
-* are
-* nice
-* unless
-* from
-* gun
-  * Now that
-  * Is not cool
+* list
+* of
+* random
+* crap
+  * here comes
+  * sub-list
+  * so random
 
-Suck  | Dick
-------+------
-hoe   | yes
-girl  | nope
+1. fuck
+2. yeah
+
+
+Holiday      |  Stupid
+------------ + --------
+Halloween    | very
+Christmas    | yes, but no school, so yay!
+Easter       | dumb christian shit, but also no school so it's OK
+Summer Break | NOT DUMB AT ALL
+
+
+
