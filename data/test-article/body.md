@@ -16,7 +16,7 @@ Blah blah and more blah
 
 
 Holiday      |  Stupid
------------- + --------
+------------ | --------
 Halloween    | very
 Christmas    | yes, but no school, so yay!
 Easter       | dumb christian shit, but also no school so it's OK
