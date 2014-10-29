@@ -21,6 +21,28 @@ class Resource
 	);
 
 
+	public static function listSubDirectories($path)
+	{
+		$dirs = glob(DATA_DIR . $path . '/*' , GLOB_ONLYDIR);
+
+		$rd_datadir = realpath(DATA_DIR);
+
+		$rdirs = array();
+		foreach($dirs as $d) {
+			$rd = realpath($d);
+
+			if(strpos($rd, $rd_datadir) === 0) {
+				$rd = substr($rd, strlen($rd_datadir));
+				$rd = trim($rd, '/');
+			}
+
+			$rdirs[] = $rd;
+		}
+
+		return $rdirs;
+	}
+
+
 	/** Make sure the path refers to an actual file in the data storage */
 	private static function verifyFile($path)
 	{

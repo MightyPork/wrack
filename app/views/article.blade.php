@@ -1,3 +1,12 @@
+<?php namespace MightyPork\Wrack;
+
+use \Michelf\MarkdownExtra;
+
+$md = new MarkdownExtra;
+$body = $a->getBody();
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -15,7 +24,18 @@
 	<tr><td>Path:</td><td>{{ $a->path }}</td></tr>
 	<tr><td>Body file:</td><td>{{ $a->body_file }}</td></tr>
 	<tr><td>Body markup:</td><td>{{ $a->markup }}</td></tr>
-	<tr><td>Body:</td><td><pre>{{ $a->getBody() }}</pre></td></tr>
+	<tr>
+		<td>Body:</td>
+		<td>
+			@if($a->markup == 'txt')
+				<pre>{{{ $body }}}</pre>
+			@elseif($a->markup == 'md')
+				{{ $md->transform($body) }}
+			@else
+				{{{ $body }}}
+			@endif
+		</td>
+	</tr>
 </table>
 
 </body>

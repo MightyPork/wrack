@@ -5,10 +5,14 @@ use Symfony\Component\Yaml\Parser;
 
 class Group
 {
-	/** Article name */
+	/** Group name */
 	public $name;
-	/** Article description to be shown in listing */
-	public $description = '';
+	/** Group description to be shown in listing */
+	public $description;
+	/** Child groups */
+	public $groups;
+	/** Child articles */
+	public $articles;
 
 	public function __construct($path)
 	{
@@ -24,8 +28,14 @@ class Group
 			throw new StructureException('Could not parse group options: '.$path, $e);
 		}
 
-		var_dump($options);
+		$this->name = Util::arrayGet($options, 'name');
+		$this->description = Util::arrayGetOptional($options, 'description', '');
 
-		// TODO handle options
+		// attempt to find articles
+
+		$children = Navigator::listGroup($path);
+
+		$this->groups = $children->groups;
+		$this->articles = $children->articles;
 	}
 }

@@ -54,14 +54,12 @@ class Application
 		} elseif(Navigator::isArticle($path)) {
 
 			$a = new Article($path);
-
 			$this->render('article', ['a' => $a]);
-			// do stuff
 
 		} elseif(Navigator::isGroup($path)) {
 
 			$g = new Group($path);
-			// do stuff
+			$this->render('group', ['g' => $g]);
 
 		} else {
 			throw new HtmlException(404, 'File not found.');

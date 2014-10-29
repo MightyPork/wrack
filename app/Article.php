@@ -81,7 +81,7 @@ class Article
 						break;
 					}
 				}
-				if($f!=null) break;
+				if($f != null) break;
 			}
 
 			if($f == null) {
