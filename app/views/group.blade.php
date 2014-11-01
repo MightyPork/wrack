@@ -1,43 +1,40 @@
 <?php namespace MightyPork\Wrack; ?>
 
-<!DOCTYPE HTML>
-<html>
-<head>
-</head>
-<body>
+@extends('layout')
 
-<h1>Group listing</h1>
 
-<table>
-	<tr><td>Name:</td><td>{{{ $g->name }}}</td></tr>
-	<tr><td>Description:</td><td>{{{ $g->description }}}</td></tr>
-	<tr>
-		<td>Sub-groups:</td>
-		<td>
-			<ul>
-				@foreach ($g->groups as $h)
-				<?php
-					$hh = new Group($h);
-				?>
-					<li><a href="{{{ $h }}}">{{{ $hh->name }}}</a>
-				@endforeach
-			</li>
-		</td>
-	</tr>
-	<tr>
-		<td>Articles:</td>
-		<td>
-			<ul>
-				@foreach ($g->articles as $a)
-				<?php
-					$aa = new Article($a);
-				?>
-					<li><a href="{{{ $a }}}">{{{ $aa->name }}}</a>
-				@endforeach
-			</li>
-		</td>
-	</tr>
-</table>
+@section('head')
+	<title>{{{ App::cfg('title_prefix') . $g->name . App::cfg('title_suffix') }}}</title>
 
-</body>
-</html>
+	<meta name="description" content="{{{ $g->description }}}">
+	<base href="/{{{ $g->path }}}">
+@stop
+
+
+@section('nav')
+	<div class="left">
+		<a href="/" class="nav-item">Ondrovo.com</a>
+	</div>
+
+	<div class="right">
+		Goto parent group boo boo.
+	</div>
+@stop
+
+
+@section('content')
+	<header>
+		<h1>{{{ $g->name }}}</h1>
+	</header>
+	<ul id="group-list">
+
+		@foreach($g->groups as $path)
+			<li>@include('_group', ['path' => $path])
+		@endforeach
+
+		@foreach($g->articles as $path)
+			<li>@include('_article', ['path' => $path])
+		@endforeach
+
+	</ul>
+@stop

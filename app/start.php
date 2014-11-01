@@ -23,11 +23,11 @@ $whoops->pushHandler(function($e){
 
 $whoops->register();
 
-use MightyPork\Wrack\Application;
+use MightyPork\Wrack\App;
 
 try {
 
-	(new Application)->start();
+	(new App)->start();
 
 } catch(MightyPork\Wrack\HtmlException $e) {
 	http_response_code($e->getCode());

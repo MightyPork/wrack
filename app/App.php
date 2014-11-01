@@ -3,10 +3,21 @@
 // include Blade
 use Philo\Blade\Blade;
 
-class Application
+class App
 {
+	public static $_config;
+
 	/** Blade instance ($blade->view()) */
 	protected $view;
+
+	public static function cfg($key, $default=null)
+	{
+		if(isset(self::$_config->{$key}))
+			return self::$_config->{$key};
+		else
+			return $default;
+	}
+
 
 	public function start()
 	{
@@ -35,7 +46,7 @@ class Application
 
 	protected function render($view, $vars = array(), $return = false)
 	{
-		$html = $this->view->make($view, $vars);
+		$html = $this->view->make($view, $vars)->render();
 		if($return)
 			return $html;
 		else
@@ -66,3 +77,5 @@ class Application
 		}
 	}
 }
+
+App::$_config = include('config.php');

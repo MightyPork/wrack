@@ -13,11 +13,15 @@ class Group
 	public $groups;
 	/** Child articles */
 	public $articles;
+	/** Group path */
+	public $path;
 
 	public function __construct($path)
 	{
 		if(!Navigator::isGroup($path))
 			throw new HtmlException(404, "There is no group at: '$path'");
+
+		$this->path = trim($path,'/');
 
 		$yaml = new Parser();
 		$source = Resource::read($path . '/group.yml');

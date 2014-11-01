@@ -2,6 +2,7 @@
 
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser;
+use Michelf\MarkdownExtra;
 
 class Article
 {
@@ -15,6 +16,8 @@ class Article
 	public $created;
 	/** Article description to be shown in listing */
 	public $description;
+	/** Article author name */
+	public $author;
 	/** Article tags (array) */
 	public $tags;
 	/** Main file */
@@ -22,7 +25,10 @@ class Article
 	/** Markup type (md, html, txt) */
 	public $markup;
 	/** Cached body file content */
-	private $body_content;
+	private $_body;
+	/** Cached rendered article html */
+	private $_rendered;
+
 
 	public function __construct($path)
 	{
@@ -53,8 +59,9 @@ class Article
 			$this->created = strtotime($s);
 		}
 
-		$this->description	= Util::arrayGetOptional($options, 'description', '');
-		$this->tags			= Util::arrayGetOptional($options, 'tags', []);
+		$this->description = Util::arrayGetOptional($options, 'description', '');
+		$this->tags	= Util::arrayGetOptional($options, 'tags', []);
+		$this->author = Util::arrayGetOptional($options, 'author', App::cfg('default_author'));
 
 		$f = Util::arrayGetOptional($options, 'body', null);
 
@@ -119,12 +126,39 @@ class Article
 	/** Get article body (raw) */
 	public function getBody()
 	{
-		if($this->body_content != null) {
-			return $this->body_content;
-		} else {
-			$c = Resource::read($this->path . '/' . $this->body_file);
-			$this->body_content = $c;
-			return $c;
+		if($this->_body != null)
+			return $this->_body;
+
+		$c = Resource::read($this->path . '/' . $this->body_file);
+		$this->_body = $c;
+		return $c;
+	}
+
+
+	/** Render using the markup, to html. */
+	public function render()
+	{
+		if($this->_rendered != null)
+			return $this->_rendered;
+
+		$body = $this->getBody();
+
+		switch($this->markup)
+		{
+			case 'txt':
+				$this->_rendered = "<pre>$body</pre>";
+				break;
+
+			case 'md':
+				$md = new MarkdownExtra;
+				$this->_rendered = $md->transform($body);
+				break;
+
+			case 'html':
+			default:
+				$this->_rendered = $body;
 		}
+
+		return $this->_rendered;
 	}
 }
