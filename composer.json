@@ -8,7 +8,6 @@
 		"michelf/php-markdown": "1.4.1",
 		"philo/laravel-blade": "dev-master",
 		"filp/whoops": "~1.0",
-		"dfridrich/php-mime-type": "dev-master",
 		"symfony/yaml": "2.6.*@dev"
 	},
 	"autoload": {

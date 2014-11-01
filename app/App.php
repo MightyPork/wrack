@@ -60,7 +60,10 @@ class App
 
 		if(Resource::isFile($path)) {
 
-			Resource::send($path);
+			if(isset($_GET['dl']) && $_GET['dl'])
+				Resource::download($path);
+			else
+				Resource::send($path);
 
 		} elseif(Navigator::isArticle($path)) {
 
@@ -73,8 +76,10 @@ class App
 			$this->render('group', ['g' => $g]);
 
 		} else {
-			throw new HtmlException(404, 'File not found.');
+			throw new HtmlException(404, 'File not found: '.$path);
 		}
+
+		exit;
 	}
 }
 

@@ -2,6 +2,10 @@
 
 $ag = $a->getGroup();
 
+$arendered = $a->render();
+$head = $arendered->head;
+$body = $arendered->body;
+
 ?>
 
 @extends('_layout')
@@ -13,6 +17,7 @@ $ag = $a->getGroup();
 	<meta name="description" content="{{{ $a->description }}}">
 	<meta name="author" content="{{{ $a->author }}}">
 	<base href="{{{ $a->path }}}">
+	{{ $head }}
 @stop
 
 
@@ -32,7 +37,7 @@ $ag = $a->getGroup();
 		<h1>{{{ $a->name }}}</h1>
 	</header>
 	<article>
-		{{ $a->render() }}
+		{{ $body }}
 	</article>
 	<footer>
 		Article by {{{ $a->author }}}, published {{{ date('Y-m-d', $a->created) }}}

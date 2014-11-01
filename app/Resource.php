@@ -1,7 +1,5 @@
 <?php namespace MightyPork\Wrack;
 
-use Defr\MimeType;
-
 /**
  * Class that takes care of resolving and serving resources from the data directory.
  */
@@ -56,7 +54,7 @@ class Resource
 
 
 	/* Get mime type for a file */
-	private static function getMime($path)
+	public static function getMime($path)
 	{
 		self::verifyFile($path);
 		return MimeType::get(DATA_DIR . $path);
@@ -103,11 +101,61 @@ class Resource
 
 		self::verifyFile($path);
 
-		// send.
-		$mime = self::getMime($path);
-		header("Content-type: $mime");
+		// the actual file
+		$file = DATA_DIR . $path;
 
-		readfile(DATA_DIR . $path);
+		// prepare ETAG
+		$last_modified_time = filemtime($file);
+		$etag = md5_file($file);
+
+		// always send headers
+		header("Last-Modified: ".gmdate("D, d M Y H:i:s", $last_modified_time)." GMT");
+		header("Etag: $etag");
+
+		// exit if not modified
+		if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified_time ||
+			@trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag) {
+			header("HTTP/1.1 304 Not Modified");
+			exit;
+		}
+
+		header('Content-Type: ' . self::getMime($path));
+		header('Content-Length: ' . filesize($file));
+
+		readfile($file);
+		flush();
+		exit;
+	}
+
+
+	public static function download($path)
+	{
+		if(self::isRestricted($path))
+			throw new HtmlException(403, "File not accessible: '$path'");
+
+		self::verifyFile($path);
+
+		$file = DATA_DIR . $path;
+
+		header('Content-Disposition: attachment; filename="' . urlencode(basename($file)).'"');
+		header('Content-Type: ' . self::getMime($path));
+		header('Content-Description: File Transfer');
+		header('Content-Transfer-Encoding: binary');
+		header('Connection: Keep-Alive');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		header('Pragma: public');
+		header('Content-Length: ' . filesize($file));
+		flush();
+
+		$fp = fopen($file, "r");
+		while(!feof($fp)) {
+			echo fread($fp, 65536);
+			flush(); // this is essential for large downloads
+		}
+
+		fclose($fp);
+		exit;
 	}
 
 

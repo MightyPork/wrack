@@ -6,29 +6,51 @@ use Michelf\MarkdownExtra;
 
 class Article
 {
+	public static $renderers;
+
 	/** Article name */
 	public $name;
+
 	/** Path to the article folder */
 	public $path;
+
 	/** Canonical name, useful for permalinks & tracking */
 	public $canonical;
+
 	/** Datum of article creation */
 	public $created;
+
 	/** Article description to be shown in listing */
 	public $description;
+
 	/** Article author name */
 	public $author;
+
 	/** Article tags (array) */
 	public $tags;
+
 	/** Main file */
 	public $body_file;
+
 	/** Markup type (md, html, txt) */
 	public $markup;
 
+
 	/** Cached body file content */
 	private $_body;
+
+	/** Cached body file extension */
+	private $_body_ext;
+
+	/** Cached body file extension */
+	private $_body_file;
+
+	/** Cached body file extension */
+	private $_body_mime;
+
 	/** Cached rendered article html */
 	private $_rendered;
+
 	/** Cached article group instance */
 	private $_group;
 
@@ -119,51 +141,43 @@ class Article
 
 
 		// resolve markup type
-		$ext = pathinfo($f, PATHINFO_EXTENSION);
-
-		switch($ext) {
-			case 'md':
-				$this->markup = 'md';
-				break;
-
-			case 'html':
-			case 'htm':
-				$this->markup = 'html';
-				break;
-
-			default:
-				$this->markup = 'txt';
-		}
-
-
-		$this->bodyfile = $f;
+		$this->_body_ext = pathinfo($this->path . '/' . $f, PATHINFO_EXTENSION);
+		$this->_body_mime = Resource::getMime($this->path . '/' . $f);
+		$this->_body_file = $f;
 
 		return $this->_body = Resource::read($this->path . '/' . $f);
 	}
 
 
-	/** Render using the markup, to html. */
+	/** Render the article. Returns RenderedArticle. */
 	public function render()
 	{
-		if($this->_rendered != null)
-			return $this->_rendered;
+		if($this->_rendered != null) return $this->_rendered;
 
 		$body = $this->getBody();
 
-		switch($this->markup)
-		{
-			case 'txt':
-				$this->_rendered = "<pre>$body</pre>";
-				break;
+		if($this->_rendered == null) {
+			foreach(self::$renderers as $r) {
+				if($r->acceptsMime($this->_body_mime)) {
+					$this->_rendered = $r->render($body);
+					break;
+				}
+			}
+		}
 
-			case 'md':
-				$md = new MarkdownExtra;
-				$this->_rendered = $md->transform($body);
-				break;
+		if($this->_rendered == null) {
+			foreach(self::$renderers as $r) {
+				if($r->acceptsExt($this->_body_ext)) {
+					$this->_rendered = $r->render($body);
+					break;
+				}
+			}
+		}
 
-			case 'html':
-			default:
-				$this->_rendered = $body;
+		// last resort
+		if($this->_rendered == null) {
+			$plainr = new PlaintextRenderer;
+			$this->_rendered = $plainr->render($body);
 		}
 
 		return $this->_rendered;
@@ -184,3 +198,5 @@ class Article
 		return $this->group = new Group($group_path);
 	}
 }
+
+Article::$renderers = array(new MarkdownRenderer, new PlaintextRenderer, new HtmlRenderer);
