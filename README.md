@@ -1,11 +1,10 @@
 WRACK
 =====
 
-Wrack is a framework that presents static website (structure of articles) to the user.
+Wrack is a framework that displays articles stored in folder structure.
 
-The articles are in MarkDown or HTML, can have custom stylesheets, scripts, images, include downloads etc.
+Article metadata is stored in YAML files, articles themselves can use MarkDown, HTML or plain text (easy to add more formats).
 
-Wrack is a system above this hierarchy and wraps articles in user-friendly website with navigation controls etc.
-
+All articles can have custom stylesheets, scripts, images, downloads etc.
 
 **WRACK is experimental and is not ready for production yet.**
