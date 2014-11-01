@@ -4,7 +4,7 @@ $gg = $g->getGroup();
 
 ?>
 
-@extends('layout')
+@extends('_layout')
 
 
 @section('head')

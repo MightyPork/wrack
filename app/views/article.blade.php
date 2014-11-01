@@ -4,7 +4,7 @@ $ag = $a->getGroup();
 
 ?>
 
-@extends('layout')
+@extends('_layout')
 
 
 @section('head')
@@ -35,6 +35,6 @@ $ag = $a->getGroup();
 		{{ $a->render() }}
 	</article>
 	<footer>
-		@include('article_footer')
+		Article by {{{ $a->author }}}, published {{{ date('Y-m-d', $a->created) }}}
 	</footer>
 @stop

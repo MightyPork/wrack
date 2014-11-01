@@ -1,9 +1,12 @@
 {
+	"name": "MightyPork/Wrack",
+	"description": "Display framework for articles stored in folder structure.",
+	"license": "MIT",
+
 	"require": {
 		"lichtner/fluentpdo": "dev-master",
 		"michelf/php-markdown": "1.4.1",
 		"philo/laravel-blade": "dev-master",
-		"intervention/image": "dev-master",
 		"filp/whoops": "~1.0",
 		"dfridrich/php-mime-type": "dev-master",
 		"symfony/yaml": "2.6.*@dev"
@@ -13,5 +16,9 @@
 			"app",
 			"app/exceptions"
 		]
-	}
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"minimum-stability": "stable"
 }
