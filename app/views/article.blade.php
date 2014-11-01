@@ -10,6 +10,7 @@ $body = $a->getBody();
 <!DOCTYPE HTML>
 <html>
 <head>
+<base href="/{{ $a->path }}/">
 </head>
 <body>
 

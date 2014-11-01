@@ -1,0 +1,4 @@
+name: Zync
+description: Zync is a script for easier file syncing over SSH.
+created: 2013-10-20
+canonical: 20131020-zync

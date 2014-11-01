@@ -1,0 +1,4 @@
+name: str_replace() in C
+description: A safe implementation of string replace function in C.
+created: 2014-03-22
+canonical: 20140322-c-str-replace

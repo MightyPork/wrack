@@ -15,11 +15,11 @@
 		<td>Sub-groups:</td>
 		<td>
 			<ul>
-				@foreach ($g->groups as $g)
+				@foreach ($g->groups as $h)
 				<?php
-					$gg = new Group($g);
+					$hh = new Group($h);
 				?>
-					<li><a href="{{{ $g }}}">{{{ $gg->name }}}</a>
+					<li><a href="{{{ $h }}}">{{{ $hh->name }}}</a>
 				@endforeach
 			</li>
 		</td>

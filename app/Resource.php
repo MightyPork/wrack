@@ -91,7 +91,7 @@ class Resource
 
 		// check against blacklist
 		$name = pathinfo(DATA_DIR . $path, PATHINFO_BASENAME);
-        return (in_array(strtolower($name), self::$restricted_filenames));
+		return (in_array(strtolower($name), self::$restricted_filenames));
 	}
 
 
@@ -106,6 +106,7 @@ class Resource
 		// send.
 		$mime = self::getMime($path);
 		header("Content-type: $mime");
+
 		readfile(DATA_DIR . $path);
 	}
 
