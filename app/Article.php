@@ -24,10 +24,16 @@ class Article
 	public $body_file;
 	/** Markup type (md, html, txt) */
 	public $markup;
+
 	/** Cached body file content */
 	private $_body;
 	/** Cached rendered article html */
 	private $_rendered;
+	/** Cached article group instance */
+	private $_group;
+
+	/** Body file name requested in options. May be null. */
+	private $opt_bodyfile;
 
 
 	public function __construct($path)
@@ -44,7 +50,8 @@ class Article
 			throw new StructureException('Could not parse article options: '.$path, $e);
 		}
 
-		$this->path = $path;
+		$this->path = preg_replace('#/+#', '/', "/$path/");
+
 		$this->name = Util::arrayGet($options, 'name');
 		$this->canonical = Util::arrayGet($options, 'canonical');
 
@@ -63,7 +70,17 @@ class Article
 		$this->tags	= Util::arrayGetOptional($options, 'tags', []);
 		$this->author = Util::arrayGetOptional($options, 'author', App::cfg('default_author'));
 
-		$f = Util::arrayGetOptional($options, 'body', null);
+		$this->bodyfile = Util::arrayGetOptional($options, 'body', null);
+	}
+
+
+	/** Get article body (raw) */
+	public function getBody()
+	{
+		if($this->_body != null)
+			return $this->_body;
+
+		$f = $this->bodyfile;
 
 		if($f == null) {
 			// try to find suitable file for the article body
@@ -83,7 +100,7 @@ class Article
 
 			foreach($names as $n) {
 				foreach($exts as $e) {
-					if(Resource::isFile("$path/$n.$e")) {
+					if(Resource::isFile("{$this->path}/$n.$e")) {
 						$f = "$n.$e";
 						break;
 					}
@@ -95,7 +112,7 @@ class Article
 				throw new StructureException("Could not resolve article body file at: $path/?");
 			}
 
-		} elseif(!Resource::isFile("$path/$f")) {
+		} elseif(!Resource::isFile("{$this->path}/$f")) {
 			// check if given name exists
 			throw new StructureException("Article body file not found: $path/$f");
 		}
@@ -106,32 +123,22 @@ class Article
 
 		switch($ext) {
 			case 'md':
-				$mu = 'md';
+				$this->markup = 'md';
 				break;
+
 			case 'html':
 			case 'htm':
-				$mu = 'html';
+				$this->markup = 'html';
 				break;
+
 			default:
-				$mu = 'txt';
+				$this->markup = 'txt';
 		}
 
-		$this->markup = $mu;
 
-		// store
-		$this->body_file = $f;
-	}
+		$this->bodyfile = $f;
 
-
-	/** Get article body (raw) */
-	public function getBody()
-	{
-		if($this->_body != null)
-			return $this->_body;
-
-		$c = Resource::read($this->path . '/' . $this->body_file);
-		$this->_body = $c;
-		return $c;
+		return $this->_body = Resource::read($this->path . '/' . $f);
 	}
 
 
@@ -160,5 +167,20 @@ class Article
 		}
 
 		return $this->_rendered;
+	}
+
+
+	/** Get article parent group */
+	public function getGroup()
+	{
+		if($this->_group != null)
+			return $this->group;
+
+		$path = rtrim($this->path, '/');
+		if($path == '') $path = '/'; // won't happen
+
+		$group_path = substr($path, 0, strrpos($path, '/'));
+
+		return $this->group = new Group($group_path);
 	}
 }

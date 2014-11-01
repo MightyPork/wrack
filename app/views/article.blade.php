@@ -1,4 +1,8 @@
-<?php namespace MightyPork\Wrack; ?>
+<?php namespace MightyPork\Wrack;
+
+$ag = $a->getGroup();
+
+?>
 
 @extends('layout')
 
@@ -8,7 +12,7 @@
 
 	<meta name="description" content="{{{ $a->description }}}">
 	<meta name="author" content="{{{ $a->author }}}">
-	<base href="/{{{ $a->path }}}/">
+	<base href="{{{ $a->path }}}">
 @stop
 
 
@@ -18,7 +22,7 @@
 	</div>
 
 	<div class="right">
-		Group fubar - goto there.
+		<a href="{{{ $ag->path }}}">{{{ $ag->name }}}</a><i class="icon-folder"></i>
 	</div>
 @stop
 

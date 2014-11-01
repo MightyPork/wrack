@@ -2,4 +2,4 @@
 	$aa = new Article($path);
 ?>
 
-<a href="/{{{ $path }}}">{{{ $aa->name }}}</a>
+<a href="{{{ $aa->path }}}">{{{ $aa->name }}}</a>

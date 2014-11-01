@@ -2,4 +2,4 @@
 	$gg = new Group($path);
 ?>
 
-<a href="/{{{ $path }}}/">{{{ $gg->name }}}</a>
+<a href="{{{ $gg->path }}}">{{{ $gg->name }}}</a>

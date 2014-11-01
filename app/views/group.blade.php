@@ -1,4 +1,8 @@
-<?php namespace MightyPork\Wrack; ?>
+<?php namespace MightyPork\Wrack;
+
+$gg = $g->getGroup();
+
+?>
 
 @extends('layout')
 
@@ -7,7 +11,7 @@
 	<title>{{{ App::cfg('title_prefix') . $g->name . App::cfg('title_suffix') }}}</title>
 
 	<meta name="description" content="{{{ $g->description }}}">
-	<base href="/{{{ $g->path }}}">
+	<base href="{{{ $g->path }}}">
 @stop
 
 
@@ -17,7 +21,9 @@
 	</div>
 
 	<div class="right">
-		Goto parent group boo boo.
+		@if($gg != null)
+			<a href="{{{ $gg->path }}}">{{{ $gg->name }}}</a><i class="icon-folder"></i>
+		@endif
 	</div>
 @stop
 
@@ -27,14 +33,12 @@
 		<h1>{{{ $g->name }}}</h1>
 	</header>
 	<ul id="group-list">
-
-		@foreach($g->groups as $path)
-			<li>@include('_group', ['path' => $path])
+		@foreach($g->group_paths as $path)
+			<li>@include('list._group', ['path' => $path])
 		@endforeach
 
-		@foreach($g->articles as $path)
-			<li>@include('_article', ['path' => $path])
+		@foreach($g->article_paths as $path)
+			<li>@include('list._article', ['path' => $path])
 		@endforeach
-
 	</ul>
 @stop
