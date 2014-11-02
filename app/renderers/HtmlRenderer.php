@@ -1,7 +1,7 @@
 <?php namespace MightyPork\Wrack;
 
 
-class HtmlRenderer implements IRenderer
+class HtmlRenderer extends Renderer
 {
 	/* override */
 	public function acceptsMime($mime)
@@ -18,10 +18,10 @@ class HtmlRenderer implements IRenderer
 
 
 	/* override */
-	public function render($body)
+	public function do_render($body)
 	{
 		$ra = new RenderedArticle;
-		$ra->body = Util::shiftHeadings($body, 1);
+		$ra->body = $body;
 		return $ra;
 	}
 }

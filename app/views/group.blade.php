@@ -16,13 +16,13 @@ $gg = $g->getGroup();
 
 
 @section('nav')
-	<div class="left">
+	<div class="right">
 		<a href="/" class="nav-item">Ondrovo.com</a>
 	</div>
 
-	<div class="right">
+	<div class="left">
 		@if($gg != null)
-			<a href="{{{ $gg->path }}}">{{{ $gg->name }}}</a><i class="icon-folder"></i>
+			<i class="icon-folder"></i><a href="{{{ $gg->path }}}">{{{ $gg->name }}}</a>
 		@endif
 	</div>
 @stop
@@ -32,13 +32,15 @@ $gg = $g->getGroup();
 	<header>
 		<h1>{{{ $g->name }}}</h1>
 	</header>
-	<ul id="group-list">
-		@foreach($g->group_paths as $path)
-			<li>@include('list._group', ['path' => $path])
-		@endforeach
+	<article>
+		<ul id="group-list">
+			@foreach($g->group_paths as $path)
+				<li>@include('list._group', ['path' => $path])
+			@endforeach
 
-		@foreach($g->article_paths as $path)
-			<li>@include('list._article', ['path' => $path])
-		@endforeach
-	</ul>
+			@foreach($g->article_paths as $path)
+				<li>@include('list._article', ['path' => $path])
+			@endforeach
+		</ul>
+	</article>
 @stop

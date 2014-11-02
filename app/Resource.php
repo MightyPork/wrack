@@ -13,9 +13,13 @@ class Resource
 		'.gitkeep',
 		'.htaccess',
 		'article.yml',
+		'group.yml',
 		'index.md',
 		'index.html',
 		'index.htm',
+		'body.md',
+		'body.html',
+		'body.htm',
 	);
 
 

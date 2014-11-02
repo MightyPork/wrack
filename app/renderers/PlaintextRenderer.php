@@ -1,7 +1,7 @@
 <?php namespace MightyPork\Wrack;
 
 
-class PlaintextRenderer implements IRenderer
+class PlaintextRenderer extends Renderer
 {
 	/* override */
 	public function acceptsMime($mime)
@@ -18,7 +18,7 @@ class PlaintextRenderer implements IRenderer
 
 
 	/* override */
-	public function render($body)
+	public function do_render($body)
 	{
 		$ra = new RenderedArticle;
 		$ra->body = '<pre class="body_plain">' . htmlentities($body, ENT_HTML5 | ENT_QUOTES) . '</pre>';

@@ -1,14 +1,3 @@
-[[css:begin]]
-
-/* twitter follow button */
-.article iframe {
-    display: inline-block;
-    margin: 0;
-    vertical-align: middle;
-}
-
-[[css:end]]
-
 $ I've made this web to have a place where I can write about the stuff I enjoy - programming, web design and electronics.
 
 # About Me

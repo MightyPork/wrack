@@ -9,6 +9,7 @@
 
 	<link rel="stylesheet" href="/css/application.css">
 	<link rel="stylesheet" href="/css/fontello-ondrovocom.css">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:700,700italic&amp;subset=latin,latin-ext">
 	<!--[if IE 7]><link rel="stylesheet" href="/css/fontello-ondrovocom-ie7.css"><![endif]-->
 
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -18,7 +19,7 @@
 </head>
 
 <body>
-	<div id="main-nav full-width">
+	<div id="main-nav" class="full-width">
 		<div class="page-width">
 			@yield('nav', '')
 		</div>

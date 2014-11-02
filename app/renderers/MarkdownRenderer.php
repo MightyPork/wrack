@@ -2,7 +2,7 @@
 
 use Michelf\MarkdownExtra;
 
-class MarkdownRenderer implements IRenderer
+class MarkdownRenderer extends Renderer
 {
 	/* override */
 	public function acceptsMime($mime)
@@ -19,7 +19,7 @@ class MarkdownRenderer implements IRenderer
 
 
 	/* override */
-	public function render($body)
+	public function do_render($body)
 	{
 		$ra = new RenderedArticle;
 		$ra->body = self::processMarkDown($body);
@@ -68,9 +68,6 @@ class MarkdownRenderer implements IRenderer
 		);
 
 		$text = Util::pregReplaceKV($cleanupPreg, $text);
-
-
-		$text = Util::shiftHeadings($text, 1);
 
 		return $text;
 	}
