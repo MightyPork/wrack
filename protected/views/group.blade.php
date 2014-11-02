@@ -22,7 +22,7 @@ $gg = $g->getGroup();
 		</span>
 	@else
 		<a href="{{{ $gg->path }}}" class="path nav-item">
-			<i class="icon-group-active"></i>{{{ $gg->name }}}
+			<i class="icon-back"></i>{{{ $gg->name }}}
 		</a>
 	@endif
 

@@ -188,6 +188,26 @@ pre.body_plain {
     padding-right: 2em;
   }
 }
+#content header h1 #soclink-bubble {
+  font-family: "Liberation Sans", Helvetica, Arial, sans-serif;
+  position: absolute;
+  font-size: 45%;
+  vertical-align: bottom;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.4);
+  padding: 0.5em;
+  text-shadow: 0 0 1px black;
+  right: 0.5em;
+  top: -2.5em;
+  text-align: center;
+  min-width: 12em;
+  opacity: 0;
+  -webkit-transition: opacity 0.1s 0.1s;
+  -moz-transition: opacity 0.1s 0.1s;
+  transition: opacity 0.1s 0.1s;
+}
 #content header h1 .links {
   position: absolute;
   right: 0;
@@ -202,11 +222,11 @@ pre.body_plain {
     display: none;
   }
 }
-#content header h1 .links a {
+#content header h1 .links a.soclink {
   color: white;
   text-decoration: none;
 }
-#content header h1 .links a:hover {
+#content header h1 .links a.soclink:hover {
   color: #8FDBFF;
 }
 #content footer {

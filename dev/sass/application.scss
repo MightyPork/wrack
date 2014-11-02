@@ -166,6 +166,30 @@ pre.body_plain {
 
 			text-shadow: 0 0 1px black;
 
+			#soclink-bubble {
+				font-family: $text-font;
+
+				position: absolute;
+				font-size: 45%;
+				vertical-align: bottom;
+				color: white;
+				background-color: rgba(0,0,0,0.3);
+				border-radius: 3px;
+				box-shadow: 0 0 1px 1px rgba(0,0,0,0.4);
+				padding: 0.5em;
+				text-shadow: 0 0 1px black;
+
+				right: 0.5em;
+				top: -2.5em;
+
+				text-align: center;
+				min-width: 12em;
+
+				opacity: 0;
+
+				@include transition(opacity 0.1s 0.1s);
+			}
+
 			.links {
 				position: absolute;
 				right: 0;
@@ -178,7 +202,7 @@ pre.body_plain {
 					}
 				}
 
-				a {
+				a.soclink {
 					color: white;
 					text-decoration: none;
 

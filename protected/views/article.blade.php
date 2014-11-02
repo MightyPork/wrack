@@ -23,7 +23,7 @@ $body = $arendered->body;
 
 @section('nav')
 	<a href="{{{ $ag->path }}}" class="path nav-item">
-		<i class="icon-group-active"></i>{{{ $ag->name }}}
+		<i class="icon-back"></i>{{{ $ag->name }}}
 	</a>
 
 	<a href="/" class="home nav-item">
