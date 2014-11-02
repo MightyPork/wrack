@@ -16,7 +16,7 @@ if($image == null)
 			   class="soclink icon-twitter"
 			   data-title="Follow @MightyPork"></a>{{--
 
-		--}}<a href="//github.com/MightyPork"
+		--}}<a href="//github.com/MightyPork?tab=repositories"
 			   target="_blank"
 			   class="soclink icon-github hide-lowres"
 			   data-title="My GitHub"></a>{{--

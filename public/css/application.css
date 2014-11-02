@@ -129,7 +129,7 @@ pre.body_plain {
 }
 #main-nav > div .nav-item.home {
   right: 0;
-  text-transform: uppercase;
+  text-transform: lowercase;
 }
 #main-nav > div .nav-item.home > i {
   display: none;
@@ -152,7 +152,7 @@ pre.body_plain {
 #content header {
   margin: 0;
   padding: 0;
-  background-color: #64C2FF;
+  background-color: #7A8996;
   min-height: 300px;
   padding-top: 45px;
   z-index: 0;
