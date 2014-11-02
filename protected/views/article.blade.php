@@ -23,11 +23,11 @@ $body = $arendered->body;
 
 @section('nav')
 	<div class="right">
-		<a href="/" class="nav-item">Ondrovo.com</a>
+		<a href="/" class="nav-item">HEYOO</a>
 	</div>
 
 	<div class="left">
-		<i class="icon-folder"></i><a href="{{{ $ag->path }}}">{{{ $ag->name }}}</a>
+		<i class="icon-group-active"></i><a href="{{{ $ag->path }}}">{{{ $ag->name }}}</a>
 	</div>
 @stop
 

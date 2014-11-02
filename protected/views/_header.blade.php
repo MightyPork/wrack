@@ -9,10 +9,9 @@ if($image == null)
 	<h1>
 		{{{ $name }}}
 		<div class="links">
-			<a href="//github.com/MightyPork" class="icon-github"></a>{{--
-			--}}<a href="//twitter.com/MightyPork" class="icon-twitter"></a>{{--
-			--}}<a href="//plus.google.com/+OndrejHruska" class="icon-googleplus"></a>{{--
-			--}}<a href="//stackoverflow.com/users/2180189/mightypork" class="icon-stackoverflow"></a>
+			<a href="//twitter.com/MightyPork" target="_blank" class="icon-twitter"></a>{{--
+			--}}<a href="//github.com/MightyPork" target="_blank" class="icon-github"></a>{{--
+			--}}<a href="//stackoverflow.com/users/2180189/mightypork" target="_blank" class="icon-stackoverflow"></a>
 		</div>
 	</h1>
 </header>
