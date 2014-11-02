@@ -1,18 +1,11 @@
 <?php namespace MightyPork\Wrack;
 
-use Symfony\Component\Yaml\Exception\ParseException;
-use Symfony\Component\Yaml\Parser;
-use Michelf\MarkdownExtra;
-
-class Article
+/**
+ * Article entity
+ */
+class Article extends WebEntity
 {
 	public static $renderers;
-
-	/** Article name */
-	public $name;
-
-	/** Path to the article folder */
-	public $path;
 
 	/** Canonical name, useful for permalinks & tracking */
 	public $canonical;
@@ -20,20 +13,14 @@ class Article
 	/** Datum of article creation */
 	public $created;
 
-	/** Article description to be shown in listing */
-	public $description;
-
 	/** Article author name */
 	public $author;
 
 	/** Article tags (array) */
 	public $tags;
 
-	/** Main file */
-	public $body_file;
-
-	/** Markup type (md, html, txt) */
-	public $markup;
+	/** Body file name requested in options. May be null. */
+	private $opt_bodyfile;
 
 
 	/** Cached body file content */
@@ -51,49 +38,38 @@ class Article
 	/** Cached rendered article html */
 	private $_rendered;
 
-	/** Cached article group instance */
-	private $_group;
-
-	/** Body file name requested in options. May be null. */
-	private $opt_bodyfile;
-
 
 	public function __construct($path)
 	{
 		if(!Navigator::isArticle($path))
 			throw new HtmlException(404, "There is no article at: '$path'");
 
-		$yaml = new Parser();
-		$source = Resource::read($path . '/article.yml');
+		$this->loadOptions($path, 'article.yml');
+	}
 
-		try {
-			$options = $yaml->parse($source);
-		} catch (ParseException $e) {
-			throw new StructureException('Could not parse article options: '.$path, $e);
-		}
 
-		$this->path = preg_replace('#/+#', '/', "/$path/");
+	/* override */
+	protected function readOptions($options)
+	{
+		parent::readOptions($options);
 
-		$this->name = Util::arrayGet($options, 'name');
-		$this->canonical = Util::arrayGet($options, 'canonical');
-
+		// get creation date
 		$s = Util::arrayGet($options, 'created');
-
 		if(is_int($s))
 			$this->created = $s;
 		else {
 			if(preg_match('/^\d{4}-\d{2}-\d{2}$/', $s))
 				$s = str_replace('-', '/',$s);
-
 			$this->created = strtotime($s);
 		}
 
-		$this->description = Util::arrayGetOptional($options, 'description', '');
-		$this->tags	= Util::arrayGetOptional($options, 'tags', []);
+		// more article metadata
+		$this->opt_bodyfile = Util::arrayGetOptional($options, 'body', null);
+		$this->canonical = Util::arrayGet($options, 'canonical');
+		$this->tags	  = Util::arrayGetOptional($options, 'tags', []);
 		$this->author = Util::arrayGetOptional($options, 'author', App::cfg('default_author'));
-
-		$this->bodyfile = Util::arrayGetOptional($options, 'body', null);
 	}
+
 
 
 	/** Get article body (raw) */
@@ -102,23 +78,13 @@ class Article
 		if($this->_body != null)
 			return $this->_body;
 
-		$f = $this->bodyfile;
+		$f = $this->opt_bodyfile;
 
 		if($f == null) {
 			// try to find suitable file for the article body
 
-			$names = array(
-				'body',
-				'index',
-				'article',
-				'main'
-			);
-
-			$exts = array(
-				'md',
-				'html',
-				'txt',
-			);
+			$names = array('body', 'index', 'article', 'main');
+			$exts = array('md', 'html', 'txt');
 
 			foreach($names as $n) {
 				foreach($exts as $e) {
@@ -127,6 +93,7 @@ class Article
 						break;
 					}
 				}
+
 				if($f != null) break;
 			}
 
@@ -181,21 +148,6 @@ class Article
 		}
 
 		return $this->_rendered;
-	}
-
-
-	/** Get article parent group */
-	public function getGroup()
-	{
-		if($this->_group != null)
-			return $this->group;
-
-		$path = rtrim($this->path, '/');
-		if($path == '') $path = '/'; // won't happen
-
-		$group_path = substr($path, 0, strrpos($path, '/'));
-
-		return $this->group = new Group($group_path);
 	}
 }
 

@@ -29,9 +29,7 @@ $gg = $g->getGroup();
 
 
 @section('content')
-	<header>
-		<h1>{{{ $g->name }}}</h1>
-	</header>
+	@include('_header', ['image' => $g->getHeader(), 'name' => $g->name])
 	<article>
 		<ul id="group-list">
 			@foreach($g->group_paths as $path)

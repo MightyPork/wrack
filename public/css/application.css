@@ -133,18 +133,33 @@ pre.body_plain {
   position: relative;
   background-position: center center;
   background-repeat: no-repeat;
+  background-size: cover;
 }
 #content header h1 {
   font-family: "Lora", "Georgia", serif;
   margin: 0;
-  padding: 0;
   position: absolute;
   bottom: 25px;
   width: 100%;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.3);
   font-size: 200%;
   font-weight: bold;
+  color: white;
+  text-shadow: 0 0 1px black;
+}
+#content header h1 .links {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px;
+}
+#content header h1 .links a {
+  color: white;
+  text-decoration: none;
+}
+#content header h1 .links a:hover {
+  color: #8FDBFF;
 }
 #content footer {
   padding: 0.809em 1.618em;

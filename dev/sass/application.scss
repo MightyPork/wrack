@@ -108,11 +108,11 @@ pre.body_plain {
 
 		background-position: center center;
 		background-repeat: no-repeat;
+		background-size: cover;
 
 		h1 {
 			font-family: $header-font;
 			margin: 0;
-			padding: 0;
 
 			position: absolute;
 
@@ -120,10 +120,29 @@ pre.body_plain {
 
 			width: 100%;
 			padding: 10px;
-			background-color: rgba(0,0,0,0.2);
+			background-color: rgba(0,0,0,0.3);
 
 			font-size: 200%;
 			font-weight: bold;
+			color: white;
+
+			text-shadow: 0 0 1px black;
+
+			.links {
+				position: absolute;
+				right: 0;
+				top: 0;
+				padding: 10px;
+
+				a {
+					color: white;
+					text-decoration: none;
+
+					&:hover {
+						color: #8FDBFF;
+					}
+				}
+			}
 		}
 	}
 

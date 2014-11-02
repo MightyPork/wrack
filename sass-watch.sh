@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sass --watch protected/sass:public/css --style expanded
+sass --watch dev/sass:public/css --style expanded

@@ -83,4 +83,4 @@ class App
 	}
 }
 
-App::$_config = include('config.php');
+App::$_config = include(__DIR__ . '/../config.php');

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'fontello-ondrovocom';
-  src: url('/fonts/fontello-ondrovocom.eot?57725064');
-  src: url('/fonts/fontello-ondrovocom.eot?57725064#iefix') format('embedded-opentype'),
-       url('/fonts/fontello-ondrovocom.woff?57725064') format('woff'),
-       url('/fonts/fontello-ondrovocom.ttf?57725064') format('truetype'),
-       url('/fonts/fontello-ondrovocom.svg?57725064#fontello-ondrovocom') format('svg');
+  src: url('/fonts/fontello-ondrovocom.eot?48576347');
+  src: url('/fonts/fontello-ondrovocom.eot?48576347#iefix') format('embedded-opentype'),
+       url('/fonts/fontello-ondrovocom.woff?48576347') format('woff'),
+       url('/fonts/fontello-ondrovocom.ttf?48576347') format('truetype'),
+       url('/fonts/fontello-ondrovocom.svg?48576347#fontello-ondrovocom') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,42 +14,42 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello-ondrovocom';
-    src: url('../font/fontello-ondrovocom.svg?57725064#fontello-ondrovocom') format('svg');
+    src: url('../font/fontello-ondrovocom.svg?48576347#fontello-ondrovocom') format('svg');
   }
 }
 */
-
+ 
  [class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "fontello-ondrovocom";
   font-style: normal;
   font-weight: normal;
   speak: none;
-
+ 
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
   margin-right: .2em;
   text-align: center;
   /* opacity: .8; */
-
+ 
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
-
+     
   /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
-
+ 
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
   margin-left: .2em;
-
+ 
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
-
+ 
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
-
+ 
 .icon-folder:before { content: '\e800'; } /* '' */
 .icon-home:before { content: '\e801'; } /* '' */
 .icon-code:before { content: '\e802'; } /* '' */
@@ -58,3 +58,5 @@
 .icon-twitter:before { content: '\e805'; } /* '' */
 .icon-googleplus:before { content: '\e806'; } /* '' */
 .icon-picture:before { content: '\e807'; } /* '' */
+.icon-stackoverflow:before { content: '\e808'; } /* '' */
+.icon-globe-inv:before { content: '\e809'; } /* '' */

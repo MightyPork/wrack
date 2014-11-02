@@ -33,9 +33,7 @@ $body = $arendered->body;
 
 
 @section('content')
-	<header>
-		<h1>{{{ $a->name }}}</h1>
-	</header>
+	@include('_header', ['image' => $a->getHeader(), 'name' => $a->name])
 	<article>
 		{{ $body }}
 	</article>
