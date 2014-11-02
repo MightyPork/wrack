@@ -11,8 +11,8 @@ if($image == null)
 		{{{ $name }}}
 		<div class="links">
 			<a href="//twitter.com/MightyPork" target="_blank" class="icon-twitter"></a>{{--
-			--}}<a href="//github.com/MightyPork" target="_blank" class="icon-github"></a>{{--
-			--}}<a href="//stackoverflow.com/users/2180189/mightypork" target="_blank" class="icon-stackoverflow"></a>
+			--}}<a href="//github.com/MightyPork" target="_blank" class="icon-github hide-lowres"></a>{{--
+			--}}<a href="//stackoverflow.com/users/2180189/mightypork" target="_blank" class="icon-stackoverflow hide-lowres"></a>
 		</div>
 	</h1>
 </header>

@@ -8,11 +8,11 @@
 @import "utils";
 @import "links";
 
-$code-font: "Consolas",​ "Liberation Mono", "​Menlo",​ Courier,​ monospace;
+$code-font: "Inconsolata", monospace;
 $text-font: "Liberation Sans", Helvetica, Arial, sans-serif;
 $header-font: "Lora", "Georgia", serif;
 
-$nav-height: 50px;
+$nav-height: 45px;
 
 $content-padding: 12px;
 $content-padding-small: 8px;
@@ -151,16 +151,17 @@ pre.body_plain {
 			padding: $content-padding;
 			background-color: rgba(0,0,0,0.3);
 
-			padding-right: 5em;
+			padding-right: 4.2em;
 
 			font-size: 200%;
 			font-weight: bold;
 			color: white;
 
 			@include respond-to(handhelds) {
-				font-size: 180%;
+				font-size: 160%;
 				bottom: 15px;
 				padding: $content-padding-small;
+				padding-right: 2em;
 			}
 
 			text-shadow: 0 0 1px black;
@@ -170,7 +171,12 @@ pre.body_plain {
 				right: 0;
 				top: 0;
 				padding: $content-padding;
-				@include respond-to(handhelds) { padding: $content-padding-small }
+				@include respond-to(handhelds) {
+					padding: $content-padding-small;
+					.hide-lowres {
+						display: none;
+					}
+				}
 
 				a {
 					color: white;
@@ -193,6 +199,7 @@ pre.body_plain {
 	}
 
 	article {
+		overflow: hidden;
 		padding: $content-padding;
 		@include respond-to(handhelds) {padding: $content-padding-small;}
 
