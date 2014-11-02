@@ -104,17 +104,44 @@ pre.body_plain {
 #main-nav > div a:hover {
   color: #045DB3;
 }
-#main-nav > div .left, #main-nav > div .right {
+#main-nav > div .nav-item {
   display: inline-block;
   position: absolute;
-  padding: 0 10px;
+  padding: 0 12px;
 }
-#main-nav > div .left {
+@media only screen and (max-width: 600px) {
+  #main-nav > div .nav-item {
+    padding: 0 8px;
+  }
+}
+#main-nav > div .nav-item.path {
   left: 0;
+  padding-right: 9em;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-#main-nav > div .right {
+@media only screen and (max-width: 600px) {
+  #main-nav > div .nav-item.path {
+    padding-right: 2em;
+  }
+}
+#main-nav > div .nav-item.home {
   right: 0;
-  font-variant: small-caps;
+  text-transform: uppercase;
+}
+#main-nav > div .nav-item.home > i {
+  display: none;
+}
+@media only screen and (max-width: 600px) {
+  #main-nav > div .nav-item.home .text {
+    display: none;
+  }
+  #main-nav > div .nav-item.home > i {
+    display: inline-block;
+  }
 }
 
 #content {
@@ -127,13 +154,18 @@ pre.body_plain {
   margin: 0;
   padding: 0;
   background-color: #64C2FF;
-  height: 300px;
+  min-height: 300px;
   padding-top: 50px;
   z-index: 0;
   position: relative;
-  background-position: center 30%;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+@media only screen and (max-width: 600px) {
+  #content header {
+    min-height: 200px;
+  }
 }
 #content header h1 {
   font-family: "Lora", "Georgia", serif;
@@ -141,18 +173,31 @@ pre.body_plain {
   position: absolute;
   bottom: 25px;
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: rgba(0, 0, 0, 0.3);
+  padding-right: 5em;
   font-size: 200%;
   font-weight: bold;
   color: white;
   text-shadow: 0 0 1px black;
 }
+@media only screen and (max-width: 600px) {
+  #content header h1 {
+    font-size: 180%;
+    bottom: 15px;
+    padding: 8px;
+  }
+}
 #content header h1 .links {
   position: absolute;
   right: 0;
   top: 0;
-  padding: 10px;
+  padding: 12px;
+}
+@media only screen and (max-width: 600px) {
+  #content header h1 .links {
+    padding: 8px;
+  }
 }
 #content header h1 .links a {
   color: white;
@@ -162,16 +207,26 @@ pre.body_plain {
   color: #8FDBFF;
 }
 #content footer {
-  padding: 0.809em 1.618em;
+  padding: 0.809em 12px;
   border-top: 1px solid #ccc;
   color: #666;
   font-style: italic;
 }
+@media only screen and (max-width: 600px) {
+  #content footer {
+    padding: 0.4045 8px;
+  }
+}
 #content article {
-  padding: 1.618em;
+  padding: 12px;
   /* HEADINGS */
   /* BLOCK ELEMENTS */
   /* Content styles */
+}
+@media only screen and (max-width: 600px) {
+  #content article {
+    padding: 8px;
+  }
 }
 #content article h2, #content article h3, #content article h4, #content article h5, #content article h6 {
   font-family: "Lora", "Georgia", serif;
@@ -210,7 +265,7 @@ pre.body_plain {
 }
 #content article p, #content article ul, #content article ol, #content article dl, #content article blockquote, #content article table, #content article iframe, #content article img {
   font-size: 1em;
-  line-height: 1.6;
+  line-height: 1.6em;
   margin-bottom: 0.809em;
 }
 #content article p:last-child, #content article ul:last-child, #content article ol:last-child, #content article dl:last-child, #content article blockquote:last-child, #content article table:last-child, #content article iframe:last-child, #content article img:last-child {
@@ -235,11 +290,6 @@ pre.body_plain {
 #content article abbr {
   border-bottom: 1px dotted #aaa;
 }
-#content article img {
-  display: block;
-  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.5);
-  border: 1px solid #45708C;
-}
 #content article img.img-float {
   float: right;
   margin: 0 4px 0.809em 0.809em;
@@ -249,8 +299,17 @@ pre.body_plain {
   margin: 0.809em 0.809em 0.809em 4px;
   padding: 0;
 }
+#content article img, #content article iframe, #content article embed, #content article video, #content article object {
+  display: block;
+}
+#content article img, #content article iframe, #content article embed, #content article video, #content article object, #content article table, #content article dl {
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.4);
+}
 #content article ul, #content article ol {
   margin-left: 1.618em;
+}
+#content article ul li, #content article ol li {
+  line-height: 1.4em;
 }
 #content article ul {
   list-style-type: disc;
@@ -268,13 +327,13 @@ pre.body_plain {
   font-size: 80%;
 }
 #content article iframe, #content article img, #content article table {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0.809em auto;
+}
+#content article iframe {
+  display: block;
 }
 #content article blockquote {
   padding: 0.809em;
-  margin: 0.809em;
-  margin-left: 2.427em;
   position: relative;
   font-style: italic;
 }
@@ -284,8 +343,9 @@ pre.body_plain {
   font-size: 80px;
   position: absolute;
   left: -35px;
-  top: 0px;
+  top: 40px;
   color: #7a7a7a;
+  font-family: Georgia, serif;
 }
 #content article blockquote cite {
   color: #999999;
@@ -296,9 +356,9 @@ pre.body_plain {
   content: "\2014 \2009";
 }
 #content article dl {
-  border: 1px dashed #bbb;
   background-color: #f0f0f0;
   padding: 0.809em;
+  margin: 0.809em;
 }
 #content article dl dt {
   font-weight: bold;

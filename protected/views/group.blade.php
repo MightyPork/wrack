@@ -16,20 +16,24 @@ $gg = $g->getGroup();
 
 
 @section('nav')
-	<div class="right">
-		<a href="/" class="nav-item">Ondrovo.com</a>
-	</div>
+	@if($gg == null)
+		<span class="path nav-item root nav-item">
+			<i class="icon-home"></i>Root
+		</span>
+	@else
+		<a href="{{{ $gg->path }}}" class="path nav-item">
+			<i class="icon-group-active"></i>{{{ $gg->name }}}
+		</a>
+	@endif
 
-	<div class="left">
-		@if($gg != null)
-			<i class="icon-folder"></i><a href="{{{ $gg->path }}}">{{{ $gg->name }}}</a>
-		@endif
-	</div>
+	<a href="/" class="home nav-item">
+		<span class="text">Ondrovo.com</span><i class="icon-globe"></i>
+	</a>
 @stop
 
 
 @section('content')
-	@include('_header', ['image' => $g->getHeader(), 'name' => $g->name])
+	@include('_header', ['type' => 'group', 'image' => $g->getHeader(), 'name' => $g->name])
 	<article>
 		<ul id="group-list">
 			@foreach($g->group_paths as $path)

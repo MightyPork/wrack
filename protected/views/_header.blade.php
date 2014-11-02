@@ -7,6 +7,7 @@ if($image == null)
 
 <header style="background-image: url('{{{ $image }}}')">
 	<h1>
+		<i class="icon-{{{ $type }}}"></i>
 		{{{ $name }}}
 		<div class="links">
 			<a href="//twitter.com/MightyPork" target="_blank" class="icon-twitter"></a>{{--

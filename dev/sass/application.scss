@@ -14,6 +14,9 @@ $header-font: "Lora", "Georgia", serif;
 
 $nav-height: 50px;
 
+$content-padding: 12px;
+$content-padding-small: 8px;
+
 html {
 	font-family: $text-font;
 	font-size: 100%;
@@ -72,19 +75,41 @@ pre.body_plain {
 			}
 		}
 
-		.left, .right {
+		.nav-item {
 			display: inline-block;
 			position: absolute;
-			padding: 0 10px;
-		}
+			padding: 0 $content-padding;
+			@include respond-to(handhelds) {padding: 0 $content-padding-small;}
 
-		.left {
-			left: 0;
-		}
+			&.path {
+				left: 0;
+				padding-right: 9em;
 
-		.right {
-			right: 0;
-			font-variant: small-caps;
+				@include ellipsis();
+
+				@include respond-to(handhelds) {
+					padding-right: 2em;
+				}
+			}
+
+			&.home {
+				right: 0;
+				text-transform: uppercase;
+
+				& > i {
+					display: none;
+				}
+
+				@include respond-to(handhelds) {
+					.text {
+						display: none;
+					}
+
+					& > i {
+						display: inline-block;
+					}
+				}
+			}
 		}
 	}
 }
@@ -100,13 +125,17 @@ pre.body_plain {
 		padding: 0;
 		background-color: #64C2FF;//#FF62B7;
 
-		height: 300px;
+		min-height: 300px;
 		padding-top: $nav-height;
 		z-index: 0;
 
+		@include respond-to(handhelds) {
+			min-height: 200px;
+		}
+
 		position: relative;
 
-		background-position: center 30%;
+		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;
 
@@ -119,12 +148,20 @@ pre.body_plain {
 			bottom: 25px;
 
 			width: 100%;
-			padding: 10px;
+			padding: $content-padding;
 			background-color: rgba(0,0,0,0.3);
+
+			padding-right: 5em;
 
 			font-size: 200%;
 			font-weight: bold;
 			color: white;
+
+			@include respond-to(handhelds) {
+				font-size: 180%;
+				bottom: 15px;
+				padding: $content-padding-small;
+			}
 
 			text-shadow: 0 0 1px black;
 
@@ -132,7 +169,8 @@ pre.body_plain {
 				position: absolute;
 				right: 0;
 				top: 0;
-				padding: 10px;
+				padding: $content-padding;
+				@include respond-to(handhelds) { padding: $content-padding-small }
 
 				a {
 					color: white;
@@ -147,14 +185,16 @@ pre.body_plain {
 	}
 
 	footer {
-		padding: 0.809em 1.618em;
+		padding: 0.809em $content-padding;
+		@include respond-to(handhelds) { padding: 0.4045 $content-padding-small }
 		border-top: 1px solid #ccc;
 		color: #666;
 		font-style: italic;
 	}
 
 	article {
-		padding: 1.618em;
+		padding: $content-padding;
+		@include respond-to(handhelds) {padding: $content-padding-small;}
 
 		/* HEADINGS */
 		h2, h3, h4, h5, h6 {
@@ -204,7 +244,7 @@ pre.body_plain {
 		/* BLOCK ELEMENTS */
 		p, ul, ol, dl, blockquote, table, iframe, img {
 			font-size: 1em;
-			line-height: 1.6;
+			line-height: 1.6em;
 			margin-bottom: 0.809em;
 
 			&:last-child {
@@ -235,10 +275,6 @@ pre.body_plain {
 		}
 
 		img {
-			display: block;
-			box-shadow: 0 0 3px 1px rgba(0,0,0,0.5);
-			border: 1px solid #45708C;
-
 			&.img-float {
 				float: right;
 				margin: 0 4px 0.809em 0.809em;
@@ -251,8 +287,20 @@ pre.body_plain {
 			}
 		}
 
+		img, iframe, embed, video, object {
+			display: block;
+		}
+
+		img, iframe, embed, video, object, table, dl {
+			box-shadow: 0 0 1px 1px rgba(0,0,0,0.4);
+		}
+
 		ul, ol {
 			margin-left: 1.618em;
+
+			li {
+				line-height: 1.4em;
+			}
 		}
 
 		ul { list-style-type: disc;	}
@@ -265,14 +313,15 @@ pre.body_plain {
 
 		/* Content styles */
 		iframe, img, table {
-			margin-left: auto;
-			margin-right: auto;
+			margin: 0.809em auto;
+		}
+
+		iframe {
+			display: block;
 		}
 
 		blockquote {
 			padding: 0.809em;
-			margin: 0.809em;
-			margin-left: 2.427em;
 			position: relative;
 			font-style: italic;
 
@@ -282,8 +331,9 @@ pre.body_plain {
 				font-size: 80px;
 				position: absolute;
 				left: -35px;
-				top: 0px;
+				top: 40px;
 				color: #7a7a7a;
+				font-family: Georgia, serif;
 			}
 
 			cite {
@@ -298,9 +348,9 @@ pre.body_plain {
 		}
 
 		dl {
-			border: 1px dashed #bbb;
 			background-color: #f0f0f0;
 			padding: 0.809em;
+			margin: 0.809em;
 
 			dt {
 				font-weight: bold;

@@ -22,22 +22,22 @@ $body = $arendered->body;
 
 
 @section('nav')
-	<div class="right">
-		<a href="/" class="nav-item">HEYOO</a>
-	</div>
+	<a href="{{{ $ag->path }}}" class="path nav-item">
+		<i class="icon-group-active"></i>{{{ $ag->name }}}
+	</a>
 
-	<div class="left">
-		<i class="icon-group-active"></i><a href="{{{ $ag->path }}}">{{{ $ag->name }}}</a>
-	</div>
+	<a href="/" class="home nav-item">
+		<span class="text">Ondrovo.com</span><i class="icon-globe"></i>
+	</a>
 @stop
 
 
 @section('content')
-	@include('_header', ['image' => $a->getHeader(), 'name' => $a->name])
+	@include('_header', ['type' => 'article', 'image' => $a->getHeader(), 'name' => $a->name])
 	<article>
 		{{ $body }}
 	</article>
 	<footer>
-		Article by {{{ $a->author }}}, published {{{ date('Y-m-d', $a->created) }}}
+		Article by {{{ $a->author }}}, published {{{ date('j. n. Y', $a->created) }}}
 	</footer>
 @stop
