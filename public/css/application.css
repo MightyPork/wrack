@@ -336,6 +336,7 @@ pre.body_plain {
   background-color: #f6f6f6 !important;
   font-size: 115%;
   font-family: "Consolas", ​ "Liberation Mono", "​Menlo", ​ Courier, ​ monospace;
+  overflow-x: auto;
   tab-size: 4;
   -moz-tab-size: 4;
   -o-tab-size: 4;

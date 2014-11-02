@@ -7,7 +7,6 @@
 @import "mixins";
 @import "utils";
 @import "links";
-@import "headings";
 
 $code-font: "Consolas",​ "Liberation Mono", "​Menlo",​ Courier,​ monospace;
 $text-font: "Liberation Sans", Helvetica, Arial, sans-serif;
@@ -349,6 +348,7 @@ pre.body_plain {
 				background-color: #f6f6f6 !important;
 				font-size: 115%;
 				font-family: $code-font;
+				overflow-x: auto;
 
 				@include tab-size(4);
 

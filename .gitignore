@@ -1,7 +1,5 @@
-/vendor/
-/.sass-cache
-composer.phar
-composer.lock
+/protected/vendor/
+/.sass-cache/
 .DS_Store
 Thumbs.db
 *~

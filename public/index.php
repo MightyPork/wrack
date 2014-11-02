@@ -1,5 +1,5 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/../protected/vendor/autoload.php';
 
-require __DIR__.'/../app/start.php';
+require __DIR__.'/../protected/app/start.php';

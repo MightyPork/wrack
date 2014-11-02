@@ -1,7 +1,7 @@
 <?php
 
 define('VIEWS_DIR', __DIR__ . '/views/');
-define('CACHE_DIR', __DIR__ . '/cache/');
+define('CACHE_DIR', __DIR__ . '/../../tmp/');
 define('DATA_DIR', __DIR__ . '/../data/');
 
 
