@@ -263,6 +263,13 @@ pre.body_plain {
   vertical-align: middle;
   position: relative;
 }
+@media only screen and (max-width: 700px) {
+  #content article.group-list ul li {
+    display: block;
+    width: 100%;
+    max-width: 460px;
+  }
+}
 #content article.group-list ul li a.group-list-item {
   margin: 7px;
   padding: 7px;

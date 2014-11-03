@@ -84,7 +84,7 @@ pre.body_plain {
 			display: inline-block;
 			position: absolute;
 			padding: 0 $content-padding;
-			@include respond-to(handhelds) {padding: 0 $content-padding-small;}
+			@include respond-to(tiny) {padding: 0 $content-padding-small;}
 
 			&.path {
 
@@ -95,7 +95,7 @@ pre.body_plain {
 
 				@include ellipsis();
 
-				@include respond-to(handhelds) {
+				@include respond-to(tiny) {
 					padding-right: 2em;
 				}
 			}
@@ -108,7 +108,7 @@ pre.body_plain {
 					display: none;
 				}
 
-				@include respond-to(handhelds) {
+				@include respond-to(tiny) {
 					.text {
 						display: none;
 					}
@@ -138,7 +138,7 @@ pre.body_plain {
 		padding-top: $nav-height;
 		z-index: 0;
 
-		@include respond-to(handhelds) {
+		@include respond-to(tiny) {
 			min-height: 200px;
 		}
 
@@ -166,7 +166,7 @@ pre.body_plain {
 			font-weight: bold;
 			color: white;
 
-			@include respond-to(handhelds) {
+			@include respond-to(tiny) {
 				font-size: 160%;
 				bottom: 15px;
 				padding: $content-padding-small;
@@ -204,7 +204,7 @@ pre.body_plain {
 				right: 0;
 				top: 0;
 				padding: $content-padding;
-				@include respond-to(handhelds) {
+				@include respond-to(tiny) {
 					padding: $content-padding-small;
 					.hide-lowres {
 						display: none;
@@ -225,7 +225,7 @@ pre.body_plain {
 
 	footer {
 		padding: 0.809em $content-padding;
-		@include respond-to(handhelds) { padding: 0.4045 $content-padding-small }
+		@include respond-to(tiny) { padding: 0.4045 $content-padding-small }
 		border-top: 1px solid #ccc;
 		color: #666;
 		font-style: italic;
@@ -257,6 +257,12 @@ pre.body_plain {
 					height: $gli-height;
 					vertical-align: middle;
 					position: relative;
+
+					@include respond-to(small){
+						display: block;
+						width: 100%;
+						max-width: 460px;
+					}
 
 					a.group-list-item {
 						margin: $gli-margin; padding: $gli-padding;
@@ -331,7 +337,7 @@ pre.body_plain {
 
 		overflow: hidden;
 		padding: $content-padding;
-		@include respond-to(handhelds) {padding: $content-padding-small;}
+		@include respond-to(tiny) {padding: $content-padding-small;}
 
 		/* HEADINGS */
 		h2, h3, h4, h5, h6 {
