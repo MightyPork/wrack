@@ -34,8 +34,8 @@ $gg = $g->getGroup();
 
 @section('content')
 	@include('_header', ['type' => 'group', 'image' => $g->getHeader(), 'name' => $g->name])
-	<article>
-		<ul id="group-list">
+	<article class="group-list">
+		<ul>
 			@foreach($g->group_paths as $path)
 				<li>@include('list._group', ['path' => $path])
 			@endforeach

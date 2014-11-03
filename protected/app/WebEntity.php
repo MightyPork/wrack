@@ -22,9 +22,11 @@ abstract class WebEntity
 
 	/** Cached relative path to header image */
 	protected $_header;
+	protected $_header_r = false;
 
 	/** Cached relative path to icon image */
 	protected $_icon;
+	protected $_icon_r = false;
 
 
 	/**
@@ -32,7 +34,7 @@ abstract class WebEntity
 	 */
 	protected function loadOptions($path, $yamlFile)
 	{
-		$this->path = preg_replace('#/+#', '/', "/$path/");
+		$this->path = Util::fixAbsPath("/$path/");
 
 		$yaml = new Parser();
 		$source = Resource::read($path . '/' . $yamlFile);
@@ -78,28 +80,32 @@ abstract class WebEntity
 	/** Get header image path */
 	public function getHeader()
 	{
-		if($this->_header != null)
+		if($this->_header_r)
 			return $this->_header;
 
-		do {
-			if(Resource::isFile($this->path . '/' . $this->opt_headerfile)) {
-				$this->_header = $this->opt_headerfile;
+		$namesToTry = [
+			$this->opt_headerfile,
+			'header.jpg',
+			'title.jpg',
+			'top.jpg',
+			'header.png',
+			'title.png',
+			'top.png',
+			'header.gif',
+			'title.gif',
+			'top.gif',
+		];
+
+		foreach($namesToTry as $n) {
+			if($n==null) continue;
+
+			if(Resource::isFile($this->path . '/' . $n)) {
+				$this->_header = Util::fixAbsPath($this->path . '/'. $n);
 				break;
 			}
+		}
 
-			if(Resource::isFile($this->path . '/header.jpg')) {
-				$this->_header = 'header.jpg';
-				break;
-			}
-
-			if(Resource::isFile($this->path . '/header.png')) {
-				$this->_header = 'header.png';
-				break;
-			}
-
-			$this->_header = '/images/header-default.jpg';
-		} while(false);
-
+		$this->_header_r = true;
 		return $this->_header;
 	}
 
@@ -107,28 +113,40 @@ abstract class WebEntity
 	/** Get icon image path */
 	public function getIcon()
 	{
-		if($this->_icon != null)
+		if($this->_icon_r)
 			return $this->_icon;
 
-		do {
-			if(Resource::isFile($this->path . '/' . $this->opt_iconfile)) {
-				$this->_icon = $this->opt_iconfile;
+		$namesToTry = [
+			$this->opt_iconfile,
+			'icon.jpg',
+			'thumbnail.jpg',
+			'icon.png',
+			'thumbnail.png',
+			'icon.gif',
+			'thumbnail.gif',
+
+			$this->opt_headerfile,
+			'header.jpg',
+			'title.jpg',
+			'top.jpg',
+			'header.png',
+			'title.png',
+			'top.png',
+			'header.gif',
+			'title.gif',
+			'top.gif',
+		];
+
+		foreach($namesToTry as $n) {
+			if($n==null) continue;
+
+			if(Resource::isFile($this->path . '/' . $n)) {
+				$this->_icon = Util::fixAbsPath($this->path . '/'. $n);
 				break;
 			}
+		}
 
-			if(Resource::isFile($this->path . '/icon.jpg')) {
-				$this->_icon = 'icon.jpg';
-				break;
-			}
-
-			if(Resource::isFile($this->path . '/icon.png')) {
-				$this->_icon = 'icon.png';
-				break;
-			}
-
-			$this->_icon = '/images/icon-default.jpg';
-		} while(false);
-
+		$this->_icon_r = true;
 		return $this->_icon;
 	}
 }

@@ -2,6 +2,16 @@
 
 class Util
 {
+	public static function fixPath($path)
+	{
+		return preg_replace('#/+#', '/', "$path");
+	}
+
+	public static function fixAbsPath($path)
+	{
+		return preg_replace('#/+#', '/', "/$path");
+	}
+
 	public static function arrayGet($array, $index)
 	{
 		if(isset($array[$index]))

@@ -17,13 +17,17 @@ $nav-height: 45px;
 $content-padding: 12px;
 $content-padding-small: 8px;
 
+$text-color: #262626;
+$nav-text-color: #2689C9;
+$nav-text-color-a: #045DB3;
+
 html {
 	font-family: $text-font;
 	font-size: 100%;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
 
-	color: #262626;
+	color: $text-color;
 
 	overflow-y: scroll;
 }
@@ -50,6 +54,7 @@ pre.body_plain {
 	white-space: pre-wrap;
 }
 
+
 #main-nav {
 	position: fixed;
 	height: $nav-height;
@@ -64,14 +69,14 @@ pre.body_plain {
 		vertical-align: middle;
 		font-size: 150%;
 
-		color: #2689C9;
+		color: $nav-text-color;
 
 		a {
-			color: #2689C9;
+			color: $nav-text-color;
 			text-decoration: none;
 
 			&:hover {
-				color: #045DB3;
+				color: $nav-text-color-a;
 			}
 		}
 
@@ -82,7 +87,10 @@ pre.body_plain {
 			@include respond-to(handhelds) {padding: 0 $content-padding-small;}
 
 			&.path {
-				left: 0;
+
+				// icon
+				i:before{margin-left: 0}
+
 				padding-right: 9em;
 
 				@include ellipsis();
@@ -113,6 +121,7 @@ pre.body_plain {
 		}
 	}
 }
+
 
 #content {
 	background-color: white;
@@ -223,6 +232,103 @@ pre.body_plain {
 	}
 
 	article {
+
+		// Group design
+		&.group-list {
+
+			$gli-height: 120px;
+			$gli-margin: 7px;
+			$gli-padding: 7px;
+
+			$gli-img-on-left: 0;
+
+			$gli-icon-size: $gli-height - ($gli-margin + $gli-padding)*2;
+
+			ul {
+				margin: 0;
+				padding: 0;
+				line-height: $gli-height;
+
+				li {
+					list-style-type: none;
+					display: inline-block;
+					width: 50%;
+					overflow: hidden;
+					height: $gli-height;
+					vertical-align: middle;
+					position: relative;
+
+					a.group-list-item {
+						margin: $gli-margin; padding: $gli-padding;
+						box-shadow: 0 0 5px rgba(0,0,0,0.5);
+						border-radius: 2px;
+						display: block;
+						position: absolute;
+						top: 0;	bottom: 0; left: 0; right: 0;
+
+						color: $text-color;
+						text-decoration: none;
+
+						&:hover {
+							background-color: #D6EDFF;
+						}
+
+						.icon {
+							box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+
+							background-position: center center;
+							background-repeat: no-repeat;
+							background-size: auto 100%;
+							background-color: #B2B2B2;
+
+							border-radius: 2px;
+							width: $gli-icon-size;
+							height: $gli-icon-size;
+							position: absolute;
+
+							top: $gli-padding;
+
+							@if $gli-img-on-left == 1 {
+								left: $gli-padding;
+							} @else {
+								right: $gli-padding;
+							}
+						}
+
+						.name, .description {
+							position: absolute;
+							top: $gli-padding;
+
+							@if $gli-img-on-left == 1 {
+								left: $gli-padding*2 + $gli-icon-size;
+								right: $gli-padding;
+							} @else {
+								right: $gli-padding*2 + $gli-icon-size;
+								left: $gli-padding;
+							}
+						}
+
+						.name {
+							i {opacity: 0.6;}
+
+							line-height: 1.4em;
+
+							font-size: 130%;
+							font-family: $header-font;
+
+							@include ellipsis();
+						}
+
+						.description {
+							padding-top: 2em;
+							overflow: hidden;
+							bottom: $gli-padding;
+						}
+					}
+				}
+			}
+		}
+
 		overflow: hidden;
 		padding: $content-padding;
 		@include respond-to(handhelds) {padding: $content-padding-small;}

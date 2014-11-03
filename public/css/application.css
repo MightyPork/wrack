@@ -114,13 +114,15 @@ pre.body_plain {
   }
 }
 #main-nav > div .nav-item.path {
-  left: 0;
   padding-right: 9em;
   display: inline-block;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+#main-nav > div .nav-item.path i:before {
+  margin-left: 0;
 }
 @media only screen and (max-width: 400px) {
   #main-nav > div .nav-item.path {
@@ -246,6 +248,74 @@ pre.body_plain {
   /* HEADINGS */
   /* BLOCK ELEMENTS */
   /* Content styles */
+}
+#content article.group-list ul {
+  margin: 0;
+  padding: 0;
+  line-height: 120px;
+}
+#content article.group-list ul li {
+  list-style-type: none;
+  display: inline-block;
+  width: 50%;
+  overflow: hidden;
+  height: 120px;
+  vertical-align: middle;
+  position: relative;
+}
+#content article.group-list ul li a.group-list-item {
+  margin: 7px;
+  padding: 7px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #262626;
+  text-decoration: none;
+}
+#content article.group-list ul li a.group-list-item:hover {
+  background-color: #D6EDFF;
+}
+#content article.group-list ul li a.group-list-item .icon {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-color: #B2B2B2;
+  border-radius: 2px;
+  width: 92px;
+  height: 92px;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+#content article.group-list ul li a.group-list-item .name, #content article.group-list ul li a.group-list-item .description {
+  position: absolute;
+  top: 7px;
+  right: 106px;
+  left: 7px;
+}
+#content article.group-list ul li a.group-list-item .name {
+  line-height: 1.4em;
+  font-size: 130%;
+  font-family: "Lora", "Georgia", serif;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#content article.group-list ul li a.group-list-item .name i {
+  opacity: 0.6;
+}
+#content article.group-list ul li a.group-list-item .description {
+  padding-top: 2em;
+  overflow: hidden;
+  bottom: 7px;
 }
 @media only screen and (max-width: 400px) {
   #content article {
