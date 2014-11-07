@@ -68,6 +68,9 @@ class App
 		} elseif(Navigator::isArticle($path)) {
 
 			$a = new Article($path);
+
+			$this->recordArticleVisit($a);
+
 			$this->render('article', ['a' => $a]);
 
 		} elseif(Navigator::isGroup($path)) {
@@ -80,6 +83,24 @@ class App
 		}
 
 		exit;
+	}
+
+
+	/** Article visited, record it into DB */
+	private function recordArticleVisit($a)
+	{
+		$visits = Util::arrayGetOptional($_COOKIE, 'counter', '{}');
+		$visits = (array) @json_decode(@base64_decode($visits));
+		if($visits == null) $visits = array();
+
+		$visit_time = Util::arrayGetOptional($visits, $a->canonical, 0);
+
+		if(time() - $visit_time > 86400) { // max visit per day
+			MetaDB::recordHit($a);
+			$visits[$a->canonical] = time();
+		}
+
+		setcookie('counter', base64_encode(json_encode($visits)), time() + (86400 * 7), '/');
 	}
 }
 

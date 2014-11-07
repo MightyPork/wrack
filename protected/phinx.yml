@@ -1,0 +1,10 @@
+paths:
+    migrations: %%PHINX_CONFIG_DIR%%/app/migrations
+
+environments:
+    default_migration_table: _phinxlog
+    default_database: meta
+
+    meta:
+        adapter: sqlite
+        name: ./db/meta

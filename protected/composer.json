@@ -8,7 +8,8 @@
 		"michelf/php-markdown": "1.4.1",
 		"philo/laravel-blade": "dev-master",
 		"filp/whoops": "~1.0",
-		"symfony/yaml": "2.6.*@dev"
+		"symfony/yaml": "2.6.*@dev",
+		"robmorgan/phinx": "*"
 	},
 	"autoload": {
 		"classmap": [

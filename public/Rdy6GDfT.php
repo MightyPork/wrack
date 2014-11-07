@@ -44,10 +44,10 @@
 // Please see http://code.google.com/p/phpliteadmin/wiki/Configuration for more details
 
 //password to gain access
-$password = 'Good password';
+$password = 'csBj9fxNXBN73AZ';
 
 //directory relative to this file to search for databases (if false, manually list databases in the $databases variable)
-$directory = '../protected/database';
+$directory = '../protected/db';
 
 //whether or not to scan the subdirectories of the above directory infinitely deep
 $subdirectories = false;
@@ -55,14 +55,14 @@ $subdirectories = false;
 //if the above $directory variable is set to false, you must specify the databases manually in an array as the next variable
 //if any of the databases do not exist as they are referenced by their path, they will be created automatically
 $databases = array(
-	array(
-		'path'=> 'database1.sqlite',
-		'name'=> 'Database 1'
-	),
-	array(
-		'path'=> 'database2.sqlite',
-		'name'=> 'Database 2'
-	),
+	// array(
+	// 	'path'=> 'database1.sqlite',
+	// 	'name'=> 'Database 1'
+	// ),
+	// array(
+	// 	'path'=> 'database2.sqlite',
+	// 	'name'=> 'Database 2'
+	// ),
 );
 
 
