@@ -81,6 +81,8 @@ CMOS
 
 ## Lettered
 
+Not yet implemented in markdown extra :(
+
 a. foo
 b. bar
 c. baz

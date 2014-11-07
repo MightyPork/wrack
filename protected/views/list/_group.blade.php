@@ -1,5 +1,7 @@
 <?php namespace MightyPork\Wrack;
 
+/** Element of the group listing, for group. */
+
 $gg = new Group($path);
 
 $icon = $gg->getIcon();

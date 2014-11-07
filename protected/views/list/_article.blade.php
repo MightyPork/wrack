@@ -1,5 +1,7 @@
 <?php namespace MightyPork\Wrack;
 
+/** Element of the group listing, for article. */
+
 $aa = new Article($path);
 
 $icon = $aa->getIcon();

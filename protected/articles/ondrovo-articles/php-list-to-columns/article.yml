@@ -1,5 +1,0 @@
-name: Print list in columns
-description: Function to arrange list into columns, for printing row-by-row.
-created: 2013-09-22
-canonical: 20130922-php-list-to-columns
-

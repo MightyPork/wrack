@@ -104,4 +104,4 @@ class App
 	}
 }
 
-App::$_config = include(__DIR__ . '/../config.php');
+App::$_config = (object) include(__DIR__ . '/../config.php');

@@ -1,5 +1,7 @@
 <?php namespace MightyPork\Wrack;
 
+/** The article body view */
+
 $ag = $a->getGroup();
 
 $arendered = $a->render();
@@ -27,7 +29,7 @@ $body = $arendered->body;
 	</a>
 
 	<a href="/" class="home nav-item">
-		<span class="text">Ondrovo.com</span><i class="icon-globe"></i>
+		<span class="text">{{{ App::cfg('home_button_text') }}}</span><i class="icon-globe"></i>
 	</a>
 @stop
 
@@ -38,6 +40,6 @@ $body = $arendered->body;
 		{{ $body }}
 	</article>
 	<footer>
-		Article by {{{ $a->author }}}, published {{{ date('j. n. Y', $a->created) }}}
+		Article by {{{ $a->author }}}, published {{{ date('j. n. Y', $a->created) }}}.
 	</footer>
 @stop

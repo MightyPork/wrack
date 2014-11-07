@@ -12,11 +12,6 @@
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:700,700italic|Inconsolata&amp;subset=latin,latin-ext">
 	<!--[if IE 7]><link rel="stylesheet" href="/css/fontello-wrack-ie7.css"><![endif]-->
 
-	{{--
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/jquery-migrate.min.js"></script>
-	--}}
-
 	<link rel="shortcut icon" href="/favicon.ico">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 

@@ -1,5 +1,7 @@
 <?php namespace MightyPork\Wrack;
 
+/** The group list view */
+
 $gg = $g->getGroup();
 
 ?>
@@ -27,7 +29,7 @@ $gg = $g->getGroup();
 	@endif
 
 	<a href="/" class="home nav-item">
-		<span class="text">Ondrovo.com</span><i class="icon-globe"></i>
+		<span class="text">{{{ App::cfg('home_button_text') }}}</span><i class="icon-globe"></i>
 	</a>
 @stop
 
@@ -45,4 +47,7 @@ $gg = $g->getGroup();
 			@endforeach
 		</ul>
 	</article>
+	<footer>
+		This website uses <a href="//github.com/MightyPork/wrack">WRACK</a>, a free article system by <a href="//github.com/MightyPork">MightyPork</a>.
+	</footer>
 @stop
